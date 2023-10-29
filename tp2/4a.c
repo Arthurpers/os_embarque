@@ -19,7 +19,7 @@ static int nb_total_mesures = 0;
 void handler_signal(int inutilise)
 {
     // Fonction à exécuter à chaque expiration du timer
-    printf("Timer expired, mesures: %ld\n", nb_mesures);
+        printf("Timer expired, mesures: %d\n", nb_mesures);
     // Incrémenter le nombre de mesures
     nb_mesures++;
 

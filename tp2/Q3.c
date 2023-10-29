@@ -1,28 +1,29 @@
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <sched.h>
-#include <sys/time.h>
-#include <sys/resource.h>
+#include <unistd.h>
 
-int main(int argc, char *argv[])
-{
-    int pid = atoi(argv[1]);
-    int prio1 = getpriority(PRIO_PROCESS, pid);
-    printf("prio : %d \n", prio1);
-
-    struct sched_param sp = {.sched_priority = 50};
-    int ret;
-    ret = sched_setscheduler(pid, SCHED_FIFO, &sp);
-    if (ret == -1)
-    {
-        perror("sched_setscheduler");
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <PID>\n", argv[0]);
         return 1;
     }
-    printf("ret : %d\n", ret);
 
-    int prio2 = getpriority(PRIO_PROCESS, pid);
-    printf("prio : %d \n", prio2);
+    pid_t pid = atoi(argv[1]);
+    int priority_before = sched_getscheduler(pid);
+    printf("La priorité du processus (PID %d) avant le changement est : %d\n", pid, priority_before);
+
+    struct sched_param param;
+    param.sched_priority = 50;
+
+    if (sched_setscheduler(pid, SCHED_FIFO, &param) == -1) {
+        perror("Erreur de sched_setscheduler");
+        return 1;
+    }
+
+    int priority_after = sched_getscheduler(pid);
+    printf("La priorité du processus (PID %d) après le changement est : %d\n", pid, priority_after);
 
     return 0;
 }

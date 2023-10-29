@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 
     while (fgets(line, 300, fp)) {
         if (strstr(line, "prio") && sscanf(line, "prio : %d", &priority) == 1) {
-            printf("La priorité du processus dans /proc/self/sched est : %d\n", pid, priority);
+            printf("La priorité du processus dans /proc/self/sched est : %d\n", priority);
             fclose(fp);
             return 0;
         }

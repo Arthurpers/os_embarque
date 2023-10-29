@@ -36,7 +36,7 @@ int main(void)
 		difference *= 1000000;
 		difference += heure.tv_usec - debut_programme.tv_usec;
 	
-		if ((heure.tv_sec - debut_programme.tv_sec) > 10)
+		if ((heure.tv_sec - debut_programme.tv_sec) > 50)
 			break;
 	}
 	return EXIT_SUCCESS;

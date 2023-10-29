@@ -48,7 +48,7 @@ int main(int argc, char * argv[])
 		}
 		i = (int) (mesure - minimum )/ largeur_echantillon;
 		if ((i < 0) || (i >= nb_echantillons)) {
-			fprintf(stderr, "mesure : %lf", mesure);
+			fprintf(stderr, "mesure : %lf",mesure);
 			fprintf(stderr, "Valeur invalideeeee ligne %d\n", nb_mesures + 1);
 			exit(EXIT_FAILURE);
 		}

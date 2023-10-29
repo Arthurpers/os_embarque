@@ -10,6 +10,7 @@
 #include <time.h>
 #include <unistd.h>
 #include <sys/time.h>
+#include <sched.h>
 
 
 static timer_t timer = (timer_t) 0;
@@ -53,8 +54,6 @@ int main(int argc, char *argv[])
         perror("Erreur de sched_setscheduler");
         return 1;
     }
-    int priority_after = sched_getscheduler(0);
-    printf("Prio : %d\n", priority_after);
 
 
     long int periode;
